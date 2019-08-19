@@ -7,23 +7,11 @@ import (
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-micro/server"
 	"github.com/micro/go-micro/service/grpc"
-	proto "greeter/proto"
-	"greeter/proto/helloworld"
-	"greeter/svc/consul"
+	"github.com/pku-hit/go-micro-grpc/proto/helloworld"
+	"github.com/pku-hit/go-micro-grpc/svc/consul"
 )
 
-type Greeter struct {
-
-}
-
-func (g *Greeter) Hello(ctx context.Context, req *proto.HelloRequest, resp *proto.HelloResponse) error {
-	resp.Greeting = "Hello " + req.Name
-	return nil
-}
-
-
 type Data struct {
-
 }
 
 func (t *Data) SayHello(ctx context.Context, req *helloworld.HelloRequest, resp *helloworld.HelloReply) error {
@@ -46,7 +34,7 @@ func main() {
 	)
 	metadata := make(map[string]string)
 	metadata["gRPC.port"] = "10086"
-	service.Server().Init(server.Address("127.0.0.1:10086"),server.Metadata(metadata))
+	service.Server().Init(server.Address("127.0.0.1:10086"), server.Metadata(metadata))
 	// service.Server().Init(server.Address("127.0.0.1:10086"),)
 	// service.Server().Init()
 
