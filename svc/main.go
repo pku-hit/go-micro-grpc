@@ -7,8 +7,8 @@ import (
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-micro/server"
 	"github.com/micro/go-micro/service/grpc"
+	"github.com/pku-hit/consul"
 	"github.com/pku-hit/go-micro-grpc/proto/helloworld"
-	"github.com/pku-hit/go-micro-grpc/svc/consul"
 )
 
 type Data struct {
