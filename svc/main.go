@@ -15,7 +15,7 @@ type Data struct {
 }
 
 func (t *Data) SayHello(ctx context.Context, req *helloworld.HelloRequest, resp *helloworld.HelloReply) error {
-	resp.Message = req.Name
+	resp.Message = "Go say: " + req.Name
 	return nil
 }
 
