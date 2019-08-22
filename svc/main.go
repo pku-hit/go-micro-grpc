@@ -29,12 +29,12 @@ func main() {
 
 	// Create a new service. Optionally include some options here.
 	service := grpc.NewService(
-		micro.Name("cloud-grpc-server"),
+		micro.Name("helloworld"),
 		micro.Registry(reg),
 	)
 	metadata := make(map[string]string)
 	metadata["gRPC.port"] = "10086"
-	service.Server().Init(server.Address("127.0.0.1:10086"), server.Metadata(metadata))
+	service.Server().Init(server.Address(":10086"), server.Metadata(metadata))
 	// service.Server().Init(server.Address("127.0.0.1:10086"),)
 	// service.Server().Init()
 
