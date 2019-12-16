@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/registry"
@@ -9,15 +8,8 @@ import (
 	"github.com/micro/go-micro/service/grpc"
 	"github.com/pku-hit/consul"
 	"github.com/pku-hit/go-micro-grpc/proto/helloworld"
+	"github.com/pku-hit/go-micro-grpc/svc/service/hello"
 )
-
-type Data struct {
-}
-
-func (t *Data) SayHello(ctx context.Context, req *helloworld.HelloRequest, resp *helloworld.HelloReply) error {
-	resp.Message = "Go say: " + req.Name
-	return nil
-}
 
 func main() {
 	// Use consul
@@ -49,7 +41,7 @@ func main() {
 
 	// Register handler
 	// proto.RegisterGreeterHandler(service.Server(), new(Greeter))
-	helloworld.RegisterGreeterHandler(service.Server(), new(Data))
+	helloworld.RegisterGreeterHandler(service.Server(), new(hello.HelloService))
 
 	// Run the server
 	if err := service.Run(); err != nil {
