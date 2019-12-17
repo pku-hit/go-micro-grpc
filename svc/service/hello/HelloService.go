@@ -2,13 +2,13 @@ package hello
 
 import (
 	"context"
-	"github.com/pku-hit/go-micro-grpc/proto/helloworld"
+	pb "github.com/pku-hit/go-micro-grpc/proto/hello"
+	"log"
 )
 
-type HelloService struct {
-}
+type HelloService struct{}
 
-func (t *HelloService) SayHello(ctx context.Context, req *helloworld.HelloRequest, resp *helloworld.HelloReply) error {
-	resp.Message = "Go say: " + req.Name
-	return nil
+func (s *HelloService) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	log.Printf("Received: %v", in.Name)
+	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
 }
